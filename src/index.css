@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Global Styles & CSS Variables */
+:root {
+  --primary-color: #ff6b35;
+  --secondary-color: #f7931e;
+  --accent-color: #4ecdc4;
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --error-color: #e74c3c;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --background-primary: #ffffff;
+  --background-secondary: #f8f9fa;
+  --border-color: #e1e8ed;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
