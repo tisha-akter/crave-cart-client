@@ -4,7 +4,8 @@ export const statsData = [
   {
     id: 1,
     icon: Users,
-    number: "50K+",
+    number: 50,
+    suffix: "K+",
     labelKey: 'happyCustomers',
     color: "from-orange-500 to-red-500",
     bgColor: "from-orange-50 to-red-50"
@@ -12,7 +13,8 @@ export const statsData = [
   {
     id: 2,
     icon: Store,
-    number: "500+",
+    number: 500,
+    suffix: "+",
     labelKey: 'restaurants',
     color: "from-blue-500 to-purple-500",
     bgColor: "from-blue-50 to-purple-50"
@@ -20,7 +22,8 @@ export const statsData = [
   {
     id: 3,
     icon: Clock,
-    number: "25min",
+    number: 25,
+    suffix: "min",
     labelEn: 'Average Delivery',
     labelBn: 'গড় ডেলিভারি',
     color: "from-green-500 to-teal-500",
@@ -29,7 +32,8 @@ export const statsData = [
   {
     id: 4,
     icon: Award,
-    number: "4.8",
+    number: 4.8,
+    suffix: "",
     labelKey: 'rating',
     labelPrefix: true,
     color: "from-yellow-500 to-orange-500",
@@ -38,7 +42,8 @@ export const statsData = [
   {
     id: 5,
     icon: MapPin,
-    number: "12+",
+    number: 12,
+    suffix: "+",
     labelEn: 'Cities Covered',
     labelBn: 'শহর কভার',
     color: "from-purple-500 to-pink-500",
@@ -47,7 +52,8 @@ export const statsData = [
   {
     id: 6,
     icon: Heart,
-    number: "99%",
+    number: 99,
+    suffix: "%",
     labelEn: 'Satisfaction Rate',
     labelBn: 'সন্তুষ্টির হার',
     color: "from-pink-500 to-red-500",

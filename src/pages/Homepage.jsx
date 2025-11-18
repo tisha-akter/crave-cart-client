@@ -5,6 +5,8 @@ import Cuisines from "../components/ui/Cuisines";
 import HowItWorks from "../components/ui/HowItWorks";
 import Stats from "../components/ui/Stats";
 import Testimonials from "../components/ui/Testimonials";
+import ScrollToTopButton from "../components/common/ScrollToTopButton";
+import AskAIButton from "../components/common/AskAIButton";
 
 const Homepage = () => {
   return (
@@ -16,6 +18,8 @@ const Homepage = () => {
       <Stats />
       <HowItWorks />
       <Testimonials />
+      <ScrollToTopButton />
+      <AskAIButton />
     </main>
   );
 };
