@@ -3,7 +3,7 @@ import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, Clock, Award, Truck,
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
+      {/* Background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 text-6xl">🍕</div>
         <div className="absolute top-32 right-20 text-4xl">🍔</div>
@@ -13,7 +13,7 @@ const Footer = () => {
       
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid md:grid-cols-4 gap-8">
-          {/* Brand Section */}
+          {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -25,7 +25,7 @@ const Footer = () => {
               Delicious food delivered right to your doorstep. Fresh, fast, and always satisfying your cravings.
             </p>
             
-            {/* Key Features */}
+            {/* Features */}
             <div className="flex flex-col space-y-2 mb-6">
               <div className="flex items-center space-x-2 text-sm text-gray-300">
                 <Clock className="h-4 w-4 text-orange-400" />
@@ -41,7 +41,7 @@ const Footer = () => {
               </div>
             </div>
             
-            {/* Social Links */}
+            {/* Social links */}
             <div className="flex gap-3">
               <a href="#" className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center hover:from-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-110 shadow-lg">
                 <Facebook className="h-4 w-4 text-white" />
@@ -55,7 +55,7 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white flex items-center">
               <span className="w-1 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded mr-3"></span>
@@ -95,7 +95,7 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Customer Service */}
+          {/* Customer service */}
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white flex items-center">
               <span className="w-1 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded mr-3"></span>
@@ -135,7 +135,7 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Contact Info */}
+          {/* Contact info */}
           <div>
             <h4 className="text-lg font-semibold mb-6 text-white flex items-center">
               <span className="w-1 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded mr-3"></span>
