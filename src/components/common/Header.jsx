@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
-      {/* Top Bar - Location & Delivery Time */}
+      {/* Top bar */}
       <div className="bg-orange-50 py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-sm">
           <div className="flex items-center space-x-4">
@@ -70,7 +70,7 @@ const Header = () => {
             <span>•</span>
             <span>{t.restaurants}</span>
             
-            {/* Language Selector */}
+            {/* Language selector */}
             <div className="relative language-dropdown">
               <button
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
@@ -104,7 +104,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main Header */}
+      {/* Main header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -123,7 +123,7 @@ const Header = () => {
             </span>
           </div>
 
-          {/* Search Bar - Center */}
+          {/* Search bar */}
           <div className="hidden md:block flex-1 max-w-lg mx-8">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -135,7 +135,7 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Desktop Action Buttons */}
+          {/* Desktop buttons */}
           <div className="hidden md:flex items-center space-x-3">
             {/* Cart */}
             <button className="relative p-2 rounded-lg hover:bg-gray-50 transition-all duration-200 group">
@@ -147,7 +147,7 @@ const Header = () => {
               )}
             </button>
             
-            {/* User Account */}
+            {/* User account */}
             <div className="flex items-center space-x-2">
               <button className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full transition-all duration-200">
                 <User className="h-5 w-5 text-gray-600" />
@@ -156,9 +156,9 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Mobile Action Buttons */}
+          {/* Mobile buttons */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* Mobile Cart */}
+            {/* Mobile cart */}
             <button className="relative p-2 rounded-lg hover:bg-gray-50 transition-all duration-200">
               <ShoppingCart className="h-6 w-6 text-gray-700" />
               {cartCount > 0 && (
@@ -168,7 +168,7 @@ const Header = () => {
               )}
             </button>
             
-            {/* Menu Button */}
+            {/* Menu button */}
             <button
               className="p-2 rounded-lg hover:bg-gray-50 transition-all duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -180,7 +180,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Search Bar for Tablet/Mobile */}
+        {/* Mobile search */}
         {isSearchOpen && (
           <div className="lg:hidden border-t border-white/20 py-3 bg-white/10 backdrop-blur-sm">
             <div className="relative">
@@ -195,11 +195,11 @@ const Header = () => {
           </div>
         )}
 
-        {/* Mobile/Tablet Menu */}
+        {/* Mobile menu */}
         {isMenuOpen && (
           <div className="mobile-menu-container lg:hidden border-t border-white/20 py-4 bg-white/10 backdrop-blur-sm rounded-b-lg">
             <div className="flex flex-col space-y-2">
-              {/* Navigation Links */}
+              {/* Navigation */}
               <nav className="space-y-1">
                 <a href="#home" className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation" onClick={() => setIsMenuOpen(false)}>
                   <Home className="h-5 w-5" />
@@ -223,7 +223,7 @@ const Header = () => {
                 </a>
               </nav>
               
-              {/* Auth Section */}
+              {/* Auth section */}
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
                 <button className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation">
                   <LogIn className="h-5 w-5" />
@@ -234,7 +234,7 @@ const Header = () => {
                   <span>{t.signUp}</span>
                 </button>
                 
-                {/* Language Selector for Mobile */}
+                {/* Language selector */}
                 <div className="px-4 py-2 border-t border-white/20 mt-2">
                   <p className="text-sm text-white/70 mb-2">Language / ভাষা</p>
                   <div className="flex space-x-2">

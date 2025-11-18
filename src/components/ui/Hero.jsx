@@ -38,10 +38,10 @@ const Hero = () => {
   }, [carouselImages.length]);
   return (
     <section id="home" className="relative bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 text-white overflow-hidden">
-      {/* Background Overlay */}
+      {/* Background */}
       <div className="absolute inset-0 bg-black/30"></div>
       
-      {/* Animated Background Elements */}
+      {/* Animated elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-20 h-20 bg-yellow-300/30 rounded-full blur-xl animate-float"></div>
         <div className="absolute top-40 right-20 w-32 h-32 bg-pink-300/20 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
@@ -50,13 +50,13 @@ const Hero = () => {
         <div className="absolute bottom-1/3 left-1/3 w-28 h-28 bg-purple-300/20 rounded-full blur-xl animate-float" style={{animationDelay: '3s'}}></div>
       </div>
       
-      {/* Main Content */}
+      {/* Main content */}
       <div className="relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="min-h-screen flex items-center py-12 sm:py-16 lg:py-20">
             <div className="w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                {/* Left Content - Takes 7 columns on large screens */}
+                {/* Left content */}
                 <div className="lg:col-span-7 text-center lg:text-left space-y-6 lg:space-y-8">
                   {/* Badge */}
                   <div className="animate-fadeInUp">
@@ -68,7 +68,7 @@ const Hero = () => {
                     </span>
                   </div>
                   
-                  {/* Main Heading */}
+                  {/* Heading */}
                   <div className="animate-fadeInUp" style={{animationDelay: '0.1s'}}>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                       <span className="block mb-2">{t.heading1}</span>
@@ -83,7 +83,7 @@ const Hero = () => {
                     </p>
                   </div>
                   
-                  {/* Search Bar */}
+                  {/* Search bar */}
                   <div className="animate-fadeInUp" style={{animationDelay: '0.3s'}}>
                     <div className="bg-white rounded-2xl p-1.5 shadow-2xl max-w-md mx-auto lg:mx-0">
                       <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  {/* CTA Buttons */}
+                  {/* Action buttons */}
                   <div className="animate-fadeInUp" style={{animationDelay: '0.4s'}}>
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                       <button className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
@@ -127,16 +127,16 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/* Right Content - Hero Image */}
+                {/* Hero image */}
                 <div className="lg:col-span-5 order-1 lg:order-2">
                   <div className="relative max-w-lg mx-auto">
-                    {/* Dynamic Carousel Images */}
+                    {/* Carousel images */}
                     <div className="animate-slideInRight relative">
-                      {/* Subtle glow effect */}
+                      {/* Glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-orange-300/20 to-red-300/20 rounded-full blur-2xl animate-pulse"></div>
                       
                       <div className="relative">
-                        {/* Main Carousel Image */}
+                        {/* Main image */}
                         <div className="relative rounded-3xl w-full max-w-lg mx-auto bg-white/10 backdrop-blur-sm" style={{minHeight: '400px'}}>
                           {carouselImages.map((image, index) => (
                             <div 
@@ -164,14 +164,14 @@ const Hero = () => {
                           ))}
                         </div>
                         
-                        {/* Image Title Overlay */}
+                        {/* Image title */}
                         <div className="absolute bottom-8 left-4 right-4 bg-black/50 backdrop-blur-sm rounded-xl p-3 text-center">
                           <h3 className="text-white font-bold text-lg">
                             {carouselImages[currentImageIndex].title()}
                           </h3>
                         </div>
                         
-                        {/* Carousel Indicators */}
+                        {/* Indicators */}
                         <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
                           {carouselImages.map((_, index) => (
                             <button
@@ -186,7 +186,7 @@ const Hero = () => {
                           ))}
                         </div>
                         
-                        {/* Navigation Arrows */}
+                        {/* Navigation */}
                         <button
                           onClick={() => setCurrentImageIndex(currentImageIndex === 0 ? carouselImages.length - 1 : currentImageIndex - 1)}
                           className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full p-2 transition-all duration-300 group"
@@ -207,7 +207,7 @@ const Hero = () => {
                       </div>
                     </div>
                     
-                    {/* Simple Floating Food Icons - Minimal Design */}
+                    {/* Floating icons */}
                     <div className="hidden lg:block absolute -top-6 -right-6 animate-float" style={{animationDelay: '0.6s'}}>
                       <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110">
                         <span className="text-2xl">🍕</span>
