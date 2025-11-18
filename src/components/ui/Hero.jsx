@@ -1,72 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../../hooks/useLanguage';
+import { languageContent } from '../../utils/languageContent';
 
 const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [language, setLanguage] = useState(() => {
-    // Get language from localStorage or default to English
-    return localStorage.getItem('language') || 'en';
-  });
-
-  // Language content
-  const content = {
-    en: {
-      badge: "#1 Food Delivery App",
-      heading1: "Craving Something",
-      heading2: "Delicious?",
-      description: "Order from your favorite restaurants and get fresh, hot meals delivered to your doorstep in minutes.",
-      addressPlaceholder: "Enter delivery address",
-      findFood: "Find Food",
-      orderNow: "Order Now",
-      browseMenu: "Browse Menu",
-      restaurants: "Restaurants",
-      customers: "Happy Customers",
-      delivery: "Avg Delivery",
-      freshTasty: "Fresh & Tasty",
-      fastDelivery: "Fast Delivery",
-      happyCustomers: "Happy Customers"
-    },
-    bn: {
-      badge: "#১ খাবার ডেলিভারি অ্যাপ",
-      heading1: "কিছু সুস্বাদু",
-      heading2: "খাবারের জন্য আকুল?",
-      description: "আপনার প্রিয় রেস্টুরেন্ট থেকে অর্ডার করুন এবং মিনিটের মধ্যে তাজা, গরম খাবার আপনার দোরগোড়ায় পৌঁছে দিন।",
-      addressPlaceholder: "ডেলিভারি ঠিকানা প্রবেশ করুন",
-      findFood: "খাবার খুঁজুন",
-      orderNow: "এখনই অর্ডার করুন",
-      browseMenu: "মেনু দেখুন",
-      restaurants: "রেস্টুরেন্ট",
-      customers: "খুশি গ্রাহক",
-      delivery: "গড় ডেলিভারি",
-      freshTasty: "তাজা ও সুস্বাদু",
-      fastDelivery: "দ্রুত ডেলিভারি",
-      happyCustomers: "খুশি গ্রাহকরা"
-    }
-  };
-
-  const t = content[language];
-
-  // Listen for language changes in localStorage
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const newLanguage = localStorage.getItem('language') || 'en';
-      setLanguage(newLanguage);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    
-    // Also check for changes periodically (for same-tab changes)
-    const interval = setInterval(() => {
-      const currentLang = localStorage.getItem('language') || 'en';
-      if (currentLang !== language) {
-        setLanguage(currentLang);
-      }
-    }, 100);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
-    };
-  }, [language]);
+  
+  // Use centralized language system
+  const { language } = useLanguage();
+  const t = languageContent[language];
   
   const carouselImages = [
     {
@@ -75,12 +16,12 @@ const Hero = () => {
       title: () => t.freshTasty
     },
     {
-      src: "https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?w=800&h=600&fit=crop&crop=center",
+      src: "https://cdn.pixabay.com/photo/2018/05/15/09/01/foodora-3402507_1280.jpg",
       alt: "Delivery Rider",
       title: () => t.fastDelivery
     },
     {
-      src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop&crop=center",
+      src: "https://img.freepik.com/premium-photo/young-woman-paying-parcel-received-from-courier_392895-101979.jpg",
       alt: "Customer Receiving Parcel",
       title: () => t.happyCustomers
     }
@@ -184,24 +125,6 @@ const Hero = () => {
                       </button>
                     </div>
                   </div>
-
-                  {/* Stats */}
-                  <div className="animate-fadeInUp" style={{animationDelay: '0.5s'}}>
-                    <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-white/20">
-                      <div className="text-center">
-                        <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-yellow-300 mb-1">500+</div>
-                        <div className="text-gray-200 text-xs sm:text-sm lg:text-base">{t.restaurants}</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-yellow-300 mb-1">50K+</div>
-                        <div className="text-gray-200 text-xs sm:text-sm lg:text-base">{t.customers}</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-yellow-300 mb-1">25min</div>
-                        <div className="text-gray-200 text-xs sm:text-sm lg:text-base">{t.delivery}</div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Right Content - Hero Image */}
@@ -214,7 +137,7 @@ const Hero = () => {
                       
                       <div className="relative">
                         {/* Main Carousel Image */}
-                        <div className="relative overflow-hidden rounded-3xl w-full max-w-lg mx-auto" style={{height: '450px'}}>
+                        <div className="relative rounded-3xl w-full max-w-lg mx-auto bg-white/10 backdrop-blur-sm" style={{minHeight: '400px'}}>
                           {carouselImages.map((image, index) => (
                             <div 
                               key={index}
@@ -225,7 +148,7 @@ const Hero = () => {
                               <img 
                                 src={image.src} 
                                 alt={image.alt}
-                                className="w-full h-full object-cover drop-shadow-2xl hover:scale-105 transition-transform duration-700"
+                                className="w-full h-auto object-contain rounded-3xl drop-shadow-2xl hover:scale-105 transition-transform duration-700"
                                 loading="lazy"
                                 onError={(e) => {
                                   console.log(`Failed to load image: ${image.src}`);

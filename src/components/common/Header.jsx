@@ -1,67 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, User, Menu, Search, MapPin, Clock, Star, X, ChevronDown, Globe, Home, Store, Grid3X3, Info, Phone, LogIn, UserPlus } from 'lucide-react';
+import { useLanguage } from '../../hooks/useLanguage';
+import { languageContent } from '../../utils/languageContent';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartCount] = useState(3);
   const [userLocation] = useState("Dhaka, Bangladesh");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [language, setLanguage] = useState(() => {
-    // Get language from localStorage or default to English
-    return localStorage.getItem('language') || 'en';
-  });
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  
+  // Use centralized language system
+  const { language, changeLanguage } = useLanguage();
+  const t = languageContent[language];
 
-  // Language content
-  const content = {
-    en: {
-      delivery: "Delivery in 30-45 min",
-      rating: "4.8 rating",
-      restaurants: "500+ restaurants",
-      searchPlaceholder: "Search for restaurants, cuisines, or dishes",
-      mobileSearchPlaceholder: "Search restaurants and food",
-      home: "Home",
-      restaurantMenu: "Restaurants", 
-      bengaliFood: "Bengali Food",
-      favorites: "Favorites",
-      orders: "Orders",
-      account: "Account",
-      signIn: "Sign in",
-      newUser: "New to CraveCart?",
-      signUp: "Sign up",
-      deliveryTab: "Delivery",
-      pickupTab: "Pickup",
-      bengaliFoodTab: "Bengali Food",
-      beveragesTab: "Beverages"
-    },
-    bn: {
-      delivery: "ডেলিভারি ৩০-৪৫ মিনিট",
-      rating: "৪.৮ রেটিং",
-      restaurants: "৫০০+ রেস্টুরেন্ট",
-      searchPlaceholder: "রেস্টুরেন্ট, খাবার বা রান্নার ধরন খুঁজুন",
-      mobileSearchPlaceholder: "রেস্টুরেন্ট এবং খাবার খুঁজুন",
-      home: "হোম",
-      restaurantMenu: "রেস্টুরেন্ট",
-      bengaliFood: "বাংলা খাবার",
-      favorites: "পছন্দের তালিকা",
-      orders: "অর্ডার",
-      account: "অ্যাকাউন্ট",
-      signIn: "সাইন ইন",
-      newUser: "CraveCart এ নতুন?",
-      signUp: "সাইন আপ করুন",
-      deliveryTab: "ডেলিভারি",
-      pickupTab: "পিকআপ",
-      bengaliFoodTab: "বাংলা খাবার",
-      beveragesTab: "পানীয়"
-    }
-  };
-
-  const t = content[language];
-
-  // Handle language change and persist to localStorage
+  // Handle language change
   const handleLanguageChange = (newLanguage) => {
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
+    changeLanguage(newLanguage);
     setIsLanguageDropdownOpen(false);
   };
 
@@ -285,7 +240,7 @@ const Header = () => {
                   <div className="flex space-x-2">
                     <button
                       onClick={() => {
-                        handleLanguageChange('en');
+                        changeLanguage('en');
                         setIsMenuOpen(false);
                       }}
                       className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -296,7 +251,7 @@ const Header = () => {
                     </button>
                     <button
                       onClick={() => {
-                        handleLanguageChange('bn');
+                        changeLanguage('bn');
                         setIsMenuOpen(false);
                       }}
                       className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
