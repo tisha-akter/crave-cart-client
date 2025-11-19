@@ -28,21 +28,24 @@ export const testimonialsData = [
 export const testimonialStatsData = [
   {
     id: 1,
-    number: "50K+",
+    number: 50,
+    suffix: "k+",
     labelKey: "happyCustomers",
     icon: "😊",
     color: "from-orange-500 to-red-500"
   },
   {
     id: 2,
-    number: "500+",
+    number: 500,
+    suffix: "+",
     labelKey: "restaurants",
     icon: "🏪",
     color: "from-blue-500 to-purple-500"
   },
   {
     id: 3,
-    number: "4.8",
+    number: 4.8,
+    suffix: "",
     labelEn: "Average Rating",
     labelBn: "গড় রেটিং",
     icon: "⭐",
@@ -50,8 +53,9 @@ export const testimonialStatsData = [
   },
   {
     id: 4,
-    number: "30min",
-    labelEn: "Delivery Time",
+    number: 30,
+    suffix: " min",
+    labelEn: "Min Delivery Time",
     labelBn: "ডেলিভারি সময়",
     icon: "🚀",
     color: "from-green-500 to-teal-500"

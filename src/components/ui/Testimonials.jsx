@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
-import { useLanguage } from '../../hooks/useLanguage';
-import { languageContent } from '../../utils/languageContent';
-import { Star, ChevronLeft, ChevronRight, Quote, MessageCircle } from 'lucide-react';
-import { testimonialsData, testimonialStatsData } from '../../data/testimonialsData';
+import React, { useState } from "react";
+import { useLanguage } from "../../hooks/useLanguage";
+import { languageContent } from "../../utils/languageContent";
+import {
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  MessageCircle,
+} from "lucide-react";
+import {
+  testimonialsData,
+  testimonialStatsData,
+} from "../../data/testimonialsData";
+import CountUp from "react-countup";
 
 const Testimonials = () => {
   const { language } = useLanguage();
@@ -14,14 +24,14 @@ const Testimonials = () => {
     name: t[testimonial.nameKey],
     location: t[testimonial.locationKey],
     rating: testimonial.rating,
-    avatar: testimonial.avatar
+    avatar: testimonial.avatar,
   });
 
   const getStatLabel = (stat) => {
     if (stat.labelKey) {
       return t[stat.labelKey];
     }
-    return language === 'en' ? stat.labelEn : stat.labelBn;
+    return language === "en" ? stat.labelEn : stat.labelBn;
   };
 
   const nextTestimonial = () => {
@@ -29,17 +39,24 @@ const Testimonials = () => {
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
+    setCurrentTestimonial(
+      (prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length
+    );
   };
 
-  const currentTestimonialData = getTestimonialData(testimonialsData[currentTestimonial]);
+  const currentTestimonialData = getTestimonialData(
+    testimonialsData[currentTestimonial]
+  );
 
   return (
     <section className="py-20 lg:py-32 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 relative overflow-hidden">
       {/* Background shapes */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-orange-200/30 to-red-200/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-pink-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div
+          className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-r from-pink-200/30 to-purple-200/30 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-yellow-100/20 to-orange-100/20 rounded-full blur-3xl"></div>
       </div>
 
@@ -136,8 +153,8 @@ const Testimonials = () => {
                 onClick={() => setCurrentTestimonial(index)}
                 className={`relative transition-all duration-500 ${
                   index === currentTestimonial
-                    ? 'w-12 h-4 bg-gradient-to-r from-orange-500 to-red-500 shadow-lg scale-110' 
-                    : 'w-4 h-4 bg-gray-300 hover:bg-orange-300 scale-100'
+                    ? "w-12 h-4 bg-gradient-to-r from-orange-500 to-red-500 shadow-lg scale-110"
+                    : "w-4 h-4 bg-gray-300 hover:bg-orange-300 scale-100"
                 } rounded-full`}
               >
                 {index === currentTestimonial && (
@@ -153,14 +170,26 @@ const Testimonials = () => {
           {testimonialStatsData.map((stat, index) => (
             <div key={stat.id} className="text-center group">
               <div className="relative mb-4">
-                <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 mb-4`}>
+                <div
+                  className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3 mb-4`}
+                >
                   <span className="text-2xl">{stat.icon}</span>
                 </div>
-                <div className={`absolute inset-0 w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl opacity-30 blur-xl group-hover:blur-2xl transition-all duration-300 mx-auto`}></div>
+                <div
+                  className={`absolute inset-0 w-16 h-16 bg-gradient-to-r ${stat.color} rounded-2xl opacity-30 blur-xl group-hover:blur-2xl transition-all duration-300 mx-auto`}
+                ></div>
               </div>
-              <div className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                {stat.number}
+              <div
+                className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300`}
+              >
+                <CountUp
+                  end={stat.number}
+                  duration={10}
+                  separator=","
+                  suffix={stat.suffix || ""}
+                />
               </div>
+
               <p className="text-gray-600 font-medium text-sm lg:text-base group-hover:text-gray-800 transition-colors duration-300">
                 {getStatLabel(stat)}
               </p>
