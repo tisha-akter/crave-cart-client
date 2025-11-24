@@ -1,0 +1,154 @@
+import React, { useState } from "react";
+import { Link } from "react-router";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
+import Logo from "../../components/common/Logo";
+
+const Register = ({ setIsRegisterModalOpen, setIsLoginModalOpen }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [image, setImage] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const onSubmit = (data) => {
+    console.log({
+      ...data,
+      image,
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    console.log("Google signup clicked");
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex-1 flex items-center justify-center p-8 bg-white text-black"
+    >
+      <div className="w-full max-w-md">
+        {/* Logo */}
+        <div className="mb-8">
+          <Logo></Logo>
+        </div>
+
+        {/* Title */}
+        <h2 className="text-3xl font-bold mb-2 text-gray-800">
+          Create your account
+        </h2>
+        <p className="text-gray-600 mb-6">Please enter your details</p>
+
+        {/* Name */}
+        <input
+          type="text"
+          {...register("name", { required: true })}
+          placeholder="Full Name"
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.name && <p className="text-red-500 mb-4">Name is required</p>}
+
+        {/* Photo Upload */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="w-full mb-4 text-sm file:px-4 file:py-2 border border-gray-300 rounded file:bg-blue-500 file:text-white file:cursor-pointer file:hover:bg-blue-600"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          {...register("email", { required: true })}
+          placeholder="Email address"
+          className="w-full mb-4 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.email && <p className="text-red-500 mb-4">Email is required</p>}
+
+        {/* Password */}
+        <div className="relative mb-4">
+          <input
+            type={showPassword ? "text" : "password"}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters",
+              },
+              validate: {
+                hasCapitalLetter: (v) =>
+                  /[A-Z]/.test(v) || "Must include at least one capital letter",
+                hasSpecialChar: (v) =>
+                  /[!@#$%^&*(),.?":{}|<>]/.test(v) ||
+                  "Must include at least one special character",
+              },
+            })}
+            placeholder="Password"
+            className="w-full px-4 py-2 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <div
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+          </div>
+        </div>
+
+        {/* Password Errors */}
+        {errors.password && (
+          <p className="text-red-500 mt-1 text-sm">{errors.password.message}</p>
+        )}
+
+        {/* Register Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition"
+        >
+          Sign up
+        </button>
+
+        {/* OR Divider */}
+        <div className="flex items-center my-4">
+          <div className="flex-grow h-px bg-gray-300"></div>
+          <span className="px-2 text-gray-500 text-sm">OR</span>
+          <div className="flex-grow h-px bg-gray-300"></div>
+        </div>
+
+        {/* Google Register */}
+        <button
+          type="button"
+          onClick={handleGoogleSignIn}
+          className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100 transition"
+        >
+          <FcGoogle className="text-xl mr-2" />
+          Sign up with Google
+        </button>
+
+        {/* Login Link */}
+        <p className="text-center text-sm text-gray-600 mt-6">
+          Already have an account?{" "}
+          <span
+            className="text-blue-600 hover:underline cursor-pointer"
+            onClick={() => {
+              setIsRegisterModalOpen(false); 
+              setIsLoginModalOpen(true); 
+            }}
+          >
+            Sign in
+          </span>
+        </p>
+      </div>
+    </form>
+  );
+};
+
+export default Register;
