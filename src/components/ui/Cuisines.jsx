@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { languageContent } from '../../utils/languageContent';
 import Button from '../common/Button';

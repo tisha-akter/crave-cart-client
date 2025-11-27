@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -37,7 +37,7 @@ const Login = ({setIsLoginModalOpen}) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex-1 flex items-center justify-center p-8 bg-white text-black"
+      className="flex-1 flex items-center justify-center p-8 bg-white text-black py-12"
     >
       <div className="w-full max-w-md">
         <div className="mb-8">
@@ -109,7 +109,7 @@ const Login = ({setIsLoginModalOpen}) => {
         </button>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Already have an account?{" "}
+          Don't have an account?{" "}
           <span
             className="text-blue-600 hover:underline cursor-pointer"
             onClick={() => {
@@ -117,7 +117,7 @@ const Login = ({setIsLoginModalOpen}) => {
               setIsLoginModalOpen(false);
             }}
           >
-            Sign in
+            Sign up
           </span>
         </p>
       </div>
