@@ -6,7 +6,7 @@ import Logo from "../../components/common/Logo";
 import Register from "./Register";
 import { X } from "lucide-react";
 
-const Login = ({setIsLoginModalOpen}) => {
+const Login = ({setIsLoginModalOpen, setShowLoginModal, onClose, isModal = false}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState({
@@ -35,16 +35,16 @@ const Login = ({setIsLoginModalOpen}) => {
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex-1 flex items-center justify-center p-8 bg-white text-black py-12"
-    >
-      <div className="w-full max-w-md">
-        <div className="mb-8">
+    <div className={isModal ? "" : "min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4"}>
+      <form
+        onSubmit={onSubmit}
+        className={isModal ? "w-full" : "bg-white rounded-lg shadow-lg p-8 w-full max-w-md"}
+      >
+        <div className="mb-6">
           <Logo></Logo>
         </div>
 
-        <h2 className="text-3xl font-bold mb-2 text-gray-800">Welcome back</h2>
+        <h2 className="text-xl font-bold mb-1 text-gray-800">Welcome back</h2>
         <p className="text-gray-600 mb-6">Please enter your details</p>
 
         <input
@@ -120,25 +120,24 @@ const Login = ({setIsLoginModalOpen}) => {
             Sign up
           </span>
         </p>
-      </div>
+      </form>
 
       {isRegisterModalOpen && (
-        <div className="fixed inset-0 bg-black/0 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md relative">
-            <button
-              onClick={() => setIsRegisterModalOpen(false)}
-              className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100"
-            >
-              <X className="h-5 w-5 text-gray-600" />
-            </button>
-            <Register
-              setIsRegisterModalOpen={setIsRegisterModalOpen}
-              setIsLoginModalOpen={setIsLoginModalOpen}
-            />
-          </div>
+        <div className="absolute inset-0 bg-white rounded-lg p-4 sm:p-6">
+          <button
+            onClick={() => setIsRegisterModalOpen(false)}
+            className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100 z-10"
+          >
+            <X className="h-5 w-5 text-gray-600" />
+          </button>
+          <Register
+            setIsRegisterModalOpen={setIsRegisterModalOpen}
+            setIsLoginModalOpen={setIsLoginModalOpen}
+            isModal={true}
+          />
         </div>
       )}
-    </form>
+    </div>
   );
 };
 

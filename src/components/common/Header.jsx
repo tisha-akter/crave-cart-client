@@ -31,6 +31,11 @@ const Header = () => {
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
+  // Debug: only log state changes
+  useEffect(() => {
+    if (isMenuOpen) console.log("Mobile menu opened");
+  }, [isMenuOpen]);
+
   // Use centralized language system
   const { language, changeLanguage } = useLanguage();
   const t = languageContent[language];
@@ -58,7 +63,7 @@ const Header = () => {
       if (!event.target.closest(".language-dropdown")) {
         setIsLanguageDropdownOpen(false);
       }
-      if (!event.target.closest(".mobile-menu")) {
+      if (!event.target.closest(".mobile-menu-container") && !event.target.closest("button[aria-label='Toggle menu']")) {
         setIsMenuOpen(false);
       }
     };
@@ -68,7 +73,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100 relative">
       {/* Top bar */}
       <div className="bg-orange-50 py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-sm">
@@ -228,13 +233,13 @@ const Header = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="mobile-menu-container lg:hidden border-t border-white/20 py-4 bg-white/10 backdrop-blur-sm rounded-b-lg">
-            <div className="flex flex-col space-y-2">
+          <div className="mobile-menu-container lg:hidden absolute top-full left-0 right-0 z-50 border-t border-gray-200 py-4 bg-white shadow-xl rounded-b-lg max-w-full">
+            <div className="flex flex-col space-y-2 px-4">
               {/* Navigation */}
               <nav className="space-y-1">
                 <a
                   href="#home"
-                  className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Home className="h-5 w-5" />
@@ -242,7 +247,7 @@ const Header = () => {
                 </a>
                 <a
                   href="#restaurants"
-                  className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Store className="h-5 w-5" />
@@ -250,7 +255,7 @@ const Header = () => {
                 </a>
                 <a
                   href="#categories"
-                  className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Grid3X3 className="h-5 w-5" />
@@ -258,7 +263,7 @@ const Header = () => {
                 </a>
                 <a
                   href="#about"
-                  className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Info className="h-5 w-5" />
@@ -266,7 +271,7 @@ const Header = () => {
                 </a>
                 <a
                   href="#contact"
-                  className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Phone className="h-5 w-5" />
@@ -275,19 +280,33 @@ const Header = () => {
               </nav>
 
               {/* Auth section */}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
-                <button className="flex items-center space-x-3 text-white/90 hover:text-white hover:bg-white/20 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+                <button 
+                  onClick={() => {
+                    console.log("Mobile Sign In clicked");
+                    setIsMenuOpen(false);
+                    setTimeout(() => setShowLoginModal(true), 100);
+                  }}
+                  className="flex items-center space-x-3 text-gray-700 hover:text-orange-600 hover:bg-orange-50 px-3 py-3 rounded-lg transition-all duration-300 font-medium touch-manipulation"
+                >
                   <LogIn className="h-5 w-5" />
                   <span>{t.signIn}</span>
                 </button>
-                <button className="flex items-center justify-center space-x-2 bg-white text-orange-500 hover:bg-orange-50 px-4 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg touch-manipulation">
+                <button 
+                  onClick={() => {
+                    console.log("Mobile Sign Up clicked"); 
+                    setIsMenuOpen(false);
+                    setTimeout(() => setShowLoginModal(true), 100);
+                  }}
+                  className="flex items-center justify-center space-x-2 bg-orange-500 text-white hover:bg-orange-600 px-4 py-3 rounded-lg font-medium transition-all duration-300 shadow-lg touch-manipulation"
+                >
                   <UserPlus className="h-5 w-5" />
                   <span>{t.signUp}</span>
                 </button>
 
                 {/* Language selector */}
-                <div className="px-4 py-2 border-t border-white/20 mt-2">
-                  <p className="text-sm text-white/70 mb-2">Language / ভাষা</p>
+                <div className="px-4 py-2 border-t border-gray-200 mt-2">
+                  <p className="text-sm text-gray-600 mb-2">Language / ভাষা</p>
                   <div className="flex space-x-2">
                     <button
                       onClick={() => {
@@ -297,7 +316,7 @@ const Header = () => {
                       className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         language === "en"
                           ? "bg-orange-500 text-white"
-                          : "bg-white/20 text-white/90 hover:bg-white/30"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
                       🇺🇸 English
@@ -310,7 +329,7 @@ const Header = () => {
                       className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         language === "bn"
                           ? "bg-orange-500 text-white"
-                          : "bg-white/20 text-white/90 hover:bg-white/30"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
                     >
                       🇧🇩 বাংলা
@@ -324,16 +343,27 @@ const Header = () => {
       </div>
 
       {showLoginModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl shadow-xl p-6 relative w-full max-w-md">
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[60] p-4"
+          onClick={(e) => {
+            // Only close if clicking the backdrop
+            if (e.target === e.currentTarget) {
+              setShowLoginModal(false);
+            }
+          }}
+        >
+          <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 relative w-full max-w-md max-h-[90vh] overflow-y-auto">
             <button
-              onClick={() => setShowLoginModal(false)}
-              className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100"
+              onClick={() => {
+                console.log("Closing login modal");
+                setShowLoginModal(false);
+              }}
+              className="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100 z-10"
             >
               <X className="h-5 w-5 text-gray-600" />
             </button>
 
-            <Login setShowLoginModal={setShowLoginModal}  onClose={() => setShowLoginModal(false)} />
+            <Login setShowLoginModal={setShowLoginModal} onClose={() => setShowLoginModal(false)} isModal={true} />
           </div>
         </div>
       )}
